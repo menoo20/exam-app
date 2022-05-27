@@ -48,13 +48,13 @@ const Login = ({checkUserApi, user, error}) => {
     const onSubmit = async data => {
 	 timeout = setTimeout(check, 0);
 	 await checkUserApi(data)
-	 console.log("done");
+	 console.log(user, error);
 	setTimeout(dismiss, 1000)
 	}
 
   return (
 	<>
-	{error && typeof(error) == String}
+	{Error.length? <p style={{color: "red"}}>{Error}</p>: "" }
 		<form className="login100-form " onSubmit={handleSubmit(onSubmit)} >
 			<span className="login100-form-title">
 				Student Login
@@ -82,7 +82,6 @@ const Login = ({checkUserApi, user, error}) => {
 }
 
 const mapStateToProps =({user, error}) =>{
-	console.log(user, error);
 	return{
 	   user,
 	   error
