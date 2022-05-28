@@ -3,12 +3,18 @@ import { connect } from 'react-redux'
 import { getQuestionsApi } from '../Redux/actions'
 import { useNavigate } from "react-router-dom";
 
+
+
 const Question = ({getQuestionsApi, user, questions}) => {
+
+  //states to be used and to be converted to redux
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [correctAnswers, setCorrectAnswers]  =useState(0);
-  const [result, setResult] = useState(1);
+  const [correctAnswers, setCorrectAnswers]  =useState(1); //will be redux
+  const [result, setResult] = useState(1); //will be redux
   const [showResult, setShowResult] = useState(false)
   const navigate = useNavigate()
+
+
   //get all questions if the user is authenticated
   //extra layer for authentication
   useEffect(()=>{
@@ -25,17 +31,21 @@ const Question = ({getQuestionsApi, user, questions}) => {
 
 
   const handleAnswering = (isCorrect)=>{
-    console.log(isCorrect);
+    // console.log(isCorrect);
     if(isCorrect){
       setCorrectAnswers(correctAnswers+1)
       
     }
     if(currentQuestion +1 < questions.length){
       setCurrentQuestion(currentQuestion + 1)
-    }else{
-       setShowResult(true)
-
     }
+    else if(currentQuestion +1 === questions.length){
+      setCurrentQuestion(currentQuestion);
+      setShowResult(true)
+    }
+    console.log("currentQuestion Index: ", currentQuestion,
+                "correct Answers: ", correctAnswers);
+    
     setResult((correctAnswers/questions.length) * 100)
   }
 
