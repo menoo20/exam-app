@@ -1,11 +1,12 @@
+
 const initialValue = {};
 
 
-const userReducer = (state = initialValue, action)=>{
+const questionsReducer = (state = initialValue, action)=>{
 
     switch(action.type){
        
-        case "CHECK_USER":
+        case "GET_QUESTIONS":
         return action.payload
         
         default: 
@@ -14,4 +15,4 @@ const userReducer = (state = initialValue, action)=>{
 
 }
 
-export default userReducer
+export default questionsReducer

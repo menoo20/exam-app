@@ -1,14 +1,16 @@
+import React, {useEffect} from "react";
 import { Route, Routes, Navigate} from "react-router-dom"
 import Question from "./Question";
 import Results from "./Results"
 import Login from "./Login"
 import Toast from "./ToastContainer"
 import { connect } from "react-redux";
+import {getQuestionsApi} from "../Redux/actions"
 
 
 
-function App({user}) {
-
+function App({user, getQuestionsApi}) {
+  
   return (
   <>
       {/* ######################### */}
@@ -28,7 +30,7 @@ function App({user}) {
   {/* ######################   */}
   {/* React Routes */}
   <Routes>
-    <Route  path="/" exact element={user.id? <Question/> : <Navigate to="/login"/>} />
+    <Route path="/" exact element={user.id? <Question/> : <Navigate to="/login"/>} />
     <Route path="/login" element={user.length? <Navigate to="/"/>:<Login/>}/>
     <Route path="/results" element={<Results/>}/>
   </Routes>
@@ -37,10 +39,10 @@ function App({user}) {
   );
 }
 
-const mapStateToProps =(state) =>{
+const mapStateToProps =({user}) =>{
   return{
-    user: state.user,
+    user: user.id? user: "",
   }
 }
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {getQuestionsApi})(App);
