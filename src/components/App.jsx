@@ -9,7 +9,7 @@ import {getQuestionsApi} from "../Redux/actions"
 
 
 
-function App({user, getQuestionsApi}) {
+function App({user, show}) {
   
   return (
   <>
@@ -32,16 +32,17 @@ function App({user, getQuestionsApi}) {
   <Routes>
     <Route path="/" exact element={user.id? <Question/> : <Navigate to="/login"/>} />
     <Route path="/login" element={user.length? <Navigate to="/"/>:<Login/>}/>
-    <Route path="/results" element={<Results/>}/>
+    <Route path="/results" element={show?<Results/>: <Navigate to="/"/>}/>
   </Routes>
   
   </>  
   );
 }
 
-const mapStateToProps =({user}) =>{
+const mapStateToProps =({user, result}) =>{
   return{
     user: user.id? user: "",
+    show: result.show
   }
 }
 

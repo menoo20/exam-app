@@ -2,7 +2,7 @@ import {checkUserApi} from "./findUser"
 
 import {addError,removeError} from "./errorsAction"
 import {getQuestionsApi} from "./questions"
-import { getResult, setResult, showResult } from "./resultsAction"
+import { getResult, setResult, showResult, resetResult } from "./resultsAction"
 
 export  {
     addError,
@@ -11,5 +11,6 @@ export  {
     getQuestionsApi,
     getResult,
     setResult,
-    showResult
+    showResult,
+    resetResult
 }

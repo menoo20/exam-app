@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getQuestionsApi } from '../Redux/actions'
+import { getQuestionsApi, setResult, showResult } from '../Redux/actions'
 import { useNavigate } from "react-router-dom";
-import { setResult, showResult } from '../Redux/actions';
 
 
-const Question = ({getQuestionsApi, user, questions, setResult, showResult, result, show}) => {
+const Question = ({getQuestionsApi, user, questions, setResult, showResult, result, reset}) => {
 
   //states to be used within the component
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers]  =useState(1);
 
   const navigate = useNavigate()
+
+  //reset useEffect checks the redux state of reset and behave upon that
+  useEffect(()=>{
+    if(reset){
+      getQuestionsApi()
+      setCorrectAnswers(1);
+      setCurrentQuestion(0);
+      
+    }
+  },[reset, getQuestionsApi])
 
 
   //get all questions if the user is authenticated
@@ -94,7 +103,8 @@ function mapStateToProps({user, questions, result}){
    questions: questions.length? questions : null,
    user: user.id? user: null,
    show: result.show,
-   result: result.result
+   result: result.result,
+   reset: result.reset
   }
 }
 
