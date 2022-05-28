@@ -5,17 +5,17 @@ const questions = [
       options: [
         { id: 0, text: "None", isCorrect: false },
         { id: 1, text: "Four", isCorrect: false },
-        { id: 2, text: "Five", isCorrect: false },
-        { id: 3, text: "Seven", isCorrect: true },
+        { id: 2, text: "Five", isCorrect: true },
+        { id: 3, text: "Seven", isCorrect: false },
       ],
     },
     {
       text: "How did Spider-Man get his powers?",
       options: [
-        { id: 0, text: "Bitten by radiactive spider", isCorrect: false },
+        { id: 0, text: "Bitten by radiactive spider", isCorrect: true },
         { id: 1, text: "Born with them", isCorrect: false },
         { id: 2, text: "Military Experiment gone awry", isCorrect: false },
-        { id: 3, text: "woke up with them after a strange dream", isCorrect: true },
+        { id: 3, text: "woke up with them after a strange dream", isCorrect: false },
       ],
     },
     {

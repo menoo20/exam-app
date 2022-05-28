@@ -15,15 +15,19 @@ const schema = yup.object({
 
 
 const Login = ({checkUserApi, user, error}) => {
-  const navigate = useNavigate();
-  const [Error, setError] = useState("");
+   //define useForm hook and add the yup schema
+    const { register, handleSubmit, formState: {errors} } = useForm({
+		resolver: yupResolver(schema)
+ 	    });
+	const [Error, setError] = useState("");
 
-  const { register, handleSubmit, formState: {errors} } = useForm({
-    resolver: yupResolver(schema)
-  });
+	const navigate = useNavigate();
+  
 
+  // this useEffect is used to navigate the user to homepage on successful login
+  //it waits for 1 sec before work as a way to simulate an api response
   useEffect(()=>{
-    
+
 	if(user.name){
 		setTimeout(() => {
 			setError("")
@@ -44,6 +48,7 @@ const Login = ({checkUserApi, user, error}) => {
   
     const dismiss = () =>  toast.dismiss(toastId.current);
 
+	//onSubmit is going to call the checkUser function and behave depending on the response
     let timeout;
     const onSubmit = async data => {
 	 timeout = setTimeout(check, 0);
@@ -58,31 +63,31 @@ const Login = ({checkUserApi, user, error}) => {
 		{Error.length? <p style={{color: "red"}}>{Error}</p>: "" }
 
 		{/* form to recieve the email and password of the user */}
-		<form className="login100-form " onSubmit={handleSubmit(onSubmit)} >
+		<form  onSubmit={handleSubmit(onSubmit)} >
 			{/* title */}
-			<span className="login100-form-title">
+			<span className="title">
 				Student Login
 			</span>
 
 			{/* user email */}
-			<div className="wrap-input100 " >
-				<input {...register("email")} className="input100" type="text"  placeholder="Email" ></input>
+			<div>
+				<input {...register("email")}  type="text"  placeholder="Email" ></input>
 				{/* error message under the email input */}
 				<p className={`error position-absolute ${errors.email?"active":""}`}>{errors.email?<i className="bi bi-info-circle me-2"></i>:""}{errors.email?.message}</p>
 			</div>
 
 			{/* user password */}
-			<div className="wrap-input100 mt-4" >
-				<input {...register("password")} className="input100" type="password"  placeholder="Password"></input>
+			<div>
+				<input {...register("password")}  type="password"  placeholder="Password"></input>
 					<i className="bi bi-shield-lock-fill" aria-hidden="true"></i>
 				<p className={`error position-absolute ${errors.password?"active":""}`}>{errors.password?<i className="bi bi-info-circle me-2"></i>:""}{errors.password?.message}</p>
 			</div>
 			
 			
-			<div className="container-login100-form-btn">
-				<button type="submit" className="login100-form-btn">
-					Login
-				</button>
+			<div>
+			<button type="submit">
+				Login
+			</button>
 			</div>
 		</form>
 	</>

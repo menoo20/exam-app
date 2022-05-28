@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getQuestionsApi } from '../Redux/actions'
 import { useNavigate } from "react-router-dom";
+import { setResult, showResult } from '../Redux/actions';
 
 
+const Question = ({getQuestionsApi, user, questions, setResult, showResult, result, show}) => {
 
-const Question = ({getQuestionsApi, user, questions}) => {
-
-  //states to be used and to be converted to redux
+  //states to be used within the component
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [correctAnswers, setCorrectAnswers]  =useState(1); //will be redux
-  const [result, setResult] = useState(1); //will be redux
-  const [showResult, setShowResult] = useState(false)
+  const [correctAnswers, setCorrectAnswers]  =useState(1);
+
   const navigate = useNavigate()
 
 
@@ -23,30 +22,36 @@ const Question = ({getQuestionsApi, user, questions}) => {
     }
   },[])
 
-  // useEffect(()=>{
-  //  if(showResult){
-  //    navigate("/results")
-  //  }
-  // },[showResult])
+  //this useEffect is used to navigate to the result route
+  useEffect(()=>{
+   if(result){
+     showResult(true)
+     navigate("/results")
+   }
+  },[result, navigate, showResult])
 
 
   const handleAnswering = (isCorrect)=>{
-    // console.log(isCorrect);
+    // isCorrect is used to check the right answer;
+    console.log(isCorrect);
     if(isCorrect){
       setCorrectAnswers(correctAnswers+1)
       
     }
+    
     if(currentQuestion +1 < questions.length){
       setCurrentQuestion(currentQuestion + 1)
     }
-    else if(currentQuestion +1 === questions.length){
+    if(currentQuestion +1 === questions.length){
       setCurrentQuestion(currentQuestion);
-      setShowResult(true)
-    }
-    console.log("currentQuestion Index: ", currentQuestion,
-                "correct Answers: ", correctAnswers);
+      const result  = Math.round((correctAnswers/questions.length) * 100);
+     
+      setResult(result)
     
-    setResult((correctAnswers/questions.length) * 100)
+    }
+    console.log(correctAnswers);
+    
+    
   }
 
   return (
@@ -62,8 +67,8 @@ const Question = ({getQuestionsApi, user, questions}) => {
       {questions[currentQuestion].options.map(option => {
         return <li 
                 key={option.id} 
-                value={option.isCorrect}
-                onClick={()=> handleAnswering(option.isCorrect)} >
+                onClick={()=> handleAnswering(option.isCorrect)}
+                style={{margin: "10px 3px"}}  >
                   {option.text}
               </li>;
       })
@@ -73,9 +78,6 @@ const Question = ({getQuestionsApi, user, questions}) => {
      )
     :
     ""}
-    {showResult?
-    <p>final result is {result}% of 100%</p>: ""
-     }  
      </>
   )
   }
@@ -86,13 +88,15 @@ const Question = ({getQuestionsApi, user, questions}) => {
 
 
 
-function mapStateToProps({user, questions}){
+function mapStateToProps({user, questions, result}){
 
   return{
    questions: questions.length? questions : null,
-   user: user.id? user: null
+   user: user.id? user: null,
+   show: result.show,
+   result: result.result
   }
 }
 
-export default connect(mapStateToProps, {getQuestionsApi})(Question)
+export default connect(mapStateToProps, {getQuestionsApi, setResult, showResult})(Question)
 

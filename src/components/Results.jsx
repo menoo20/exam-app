@@ -1,9 +1,20 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { getResult } from '../Redux/actions'
 
-const Results = () => {
+const Results = ({result}) => {
   return (
-    <div>Results</div>
+    <div>
+      <h1>Your final result is {Math.round(parseInt(result))}% out of 100%</h1>
+    </div>
   )
 }
 
-export default Results
+function mapStateToProps({result}){
+  console.log(result);
+  return{
+   result: result.result,
+  }
+}
+
+export default connect(mapStateToProps, {getResult})(Results)
