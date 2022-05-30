@@ -6,7 +6,7 @@ import Login from "./Login"
 import Toast from "./ToastContainer"
 import { connect } from "react-redux";
 import {getQuestionsApi} from "../Redux/actions"
-
+import Login2 from "./Login";
 
 
 function App({user, show}) {
@@ -29,11 +29,13 @@ function App({user, show}) {
     </Toast>
   {/* ######################   */}
   {/* React Routes */}
-  <Routes>
-    <Route path="/" exact element={user.id? <Question/> : <Navigate to="/login"/>} />
-    <Route path="/login" element={user.length? <Navigate to="/"/>:<Login/>}/>
-    <Route path="/results" element={show?<Results/>: <Navigate to="/"/>}/>
-  </Routes>
+
+    <Routes>
+      <Route path="/" exact element={user.id? <Question/> : <Navigate to="/login"/>} />
+      <Route path="/login" element={user.length? <Navigate to="/"/>:<Login/>}/>
+      <Route path="/results" element={show?<Results/>: <Navigate to="/"/>}/>
+    </Routes>
+
   
   </>  
   );

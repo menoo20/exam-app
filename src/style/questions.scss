@@ -1,0 +1,40 @@
+.card{
+    .card-header{
+        background-color: #8bd122;
+        color: white;
+        h2{
+            margin: 5px auto;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+    }
+    ul{
+        list-style: none;
+        text-align: center;
+        margin: 0 auto;
+        padding-left: 0 ;
+        
+        li{
+           background-color: darkorchid;
+           border-radius: 10px;
+           color: white;
+           font-weight: bold;
+           letter-spacing: 1px;
+           font-size: 1rem;
+           margin: 20px auto;
+           cursor: pointer;
+           &:hover{
+               background-color: rgba(darkorchid, .5);
+               transition: all 0.4s ease;
+           }
+        }
+    }
+    button{
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+        font-size: 1.1rem;
+    }
+}

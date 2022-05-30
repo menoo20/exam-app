@@ -1,0 +1,33 @@
+
+div.container-fluid, div.container-lg{
+    height: 100vh;
+    align-items: center;
+    display: flex;
+.stack{
+    form{
+        width: 70%;
+        padding: 25px 40px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+    background-color: white;
+        .input{
+            border-radius: 2.25rem;
+            background-color: #e6e6e6; 
+            &:focus{
+                box-shadow: none;
+                border: none;
+            }           
+        }
+        label{
+             padding-left: 2rem !important;
+             color: rgb(160, 157, 157);
+        }
+        button{
+            
+            border-radius: 30px;
+        }
+    }
+}
+
+}

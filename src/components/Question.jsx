@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getQuestionsApi, setResult, showResult } from '../Redux/actions'
 import { useNavigate } from "react-router-dom";
-
+import "../style/questions.scss"
 
 const Question = ({getQuestionsApi, user, questions, setResult, showResult, result, reset}) => {
 
@@ -66,28 +66,38 @@ const Question = ({getQuestionsApi, user, questions, setResult, showResult, resu
   return (
      <>
      {questions? 
-     (
-     <>
-     {/* display the question text */}
-     <p>{questions[currentQuestion].text}</p>
-     
-     {/* display the options of each question */}
-    <ul>
-      {questions[currentQuestion].options.map(option => {
-        return <li 
-                key={option.id} 
-                onClick={()=> handleAnswering(option.isCorrect)}
-                style={{margin: "10px 3px"}}  >
-                  {option.text}
-              </li>;
-      })
-      }
-    </ul>
-     </>
+      (
+      <>
+          
+         <div className="row p-0 justify-content-center align-items-center">
+          <div class="card text-center col-11 p-0">
+              <div class="card-header">
+                {/* display the question text */}
+                <h2>{questions[currentQuestion].text}</h2>
+              </div>
+            <div class="card-body">
+              <ul>
+              {questions[currentQuestion].options.map(option => {
+                return <li 
+                        key={option.id} 
+                        onClick={()=> handleAnswering(option.isCorrect)}
+                        className="py-3 px-2"  >
+                        {option.text}
+                        
+                      </li>;
+              })
+              }
+              </ul>
+             </div>
+          </div>
+        </div> 
+    </>
      )
     :
     ""}
+  
      </>
+
   )
   }
 
