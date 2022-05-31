@@ -1,40 +1,45 @@
 .card{
-    .card-header{
-        background-color: #8bd122;
-        color: white;
-        h2{
-            margin: 5px auto;
-            font-weight: bold;
-            letter-spacing: 1px;
-            font-size: 1.2rem;
-        }
+   border: none !important;
+   background-color: #f10ee6 !important;
+
+   
+   .list-group-item{
+     border:none;
+     border-radius: 5px;
+     background-color: rgba($color: white, $alpha: 0.7);
+     cursor: pointer;
+     transition: all .3s ease;
+     &:hover{
+         background-color: white;
+     }
+   }
+
+}
+
+
+img{
+    &.avatar{
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+        animation: animate 5s ease infinite normal forwards;
+        transition: all 0.4s ease;
     }
-    ul{
-        list-style: none;
-        text-align: center;
-        margin: 0 auto;
-        padding-left: 0 ;
-        
-        li{
-           background-color: darkorchid;
-           border-radius: 10px;
-           color: white;
-           font-weight: bold;
-           letter-spacing: 1px;
-           font-size: 1rem;
-           margin: 20px auto;
-           cursor: pointer;
-           &:hover{
-               background-color: rgba(darkorchid, .5);
-               transition: all 0.4s ease;
-           }
-        }
+ 
+
+}
+
+@keyframes animate {
+    0%{
+      transform: translate(50%, -50%);
     }
-    button{
-        color: white;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-transform: capitalize;
-        font-size: 1.1rem;
+    50%{
+      transform: translate(50%, -58%);
+    }
+    100%{
+      transform: translate(50%, -50%);
     }
 }
