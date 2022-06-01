@@ -74,6 +74,7 @@ const Login = ({ checkUserApi, user, error }) => {
       <Stack className="stack align-items-center justify-content-center">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <h1 className="mb-5 text-center">Student Login</h1>
+          <p className="small text-muted">hint: ahmed@gmail.com - password: 123456</p>
           {Error.length ? (
             <p className="col-12 text-center" style={{ color: "red" }}>
               <InfoCircle className="me-2"></InfoCircle>
@@ -84,10 +85,7 @@ const Login = ({ checkUserApi, user, error }) => {
           )}
           {/* email group */}
           <Form.Group className="pb-0 " controlId="formBasicEmail">
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Email"
-            >
+            <FloatingLabel controlId="floatingInput" label="Email">
               <Form.Control
                 type="email"
                 className="input ps-4"
@@ -97,16 +95,10 @@ const Login = ({ checkUserApi, user, error }) => {
             </FloatingLabel>
             <Form.Text>
               <p
-                className={`error ps-3 pt-2 ${
-                  errors.email ? "active" : ""
-                }`}
+                className={`error ps-3 pt-2 ${errors.email ? "active" : ""}`}
                 style={{ color: "red" }}
               >
-                {errors.email ? (
-                  <InfoCircle className="me-2"></InfoCircle>
-                ) : (
-                  ""
-                )}
+                {errors.email ? <InfoCircle className="me-2"></InfoCircle> : ""}
                 {errors.email?.message}
               </p>
             </Form.Text>
@@ -114,10 +106,7 @@ const Login = ({ checkUserApi, user, error }) => {
 
           {/* password group */}
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Password"
-            >
+            <FloatingLabel controlId="floatingInput" label="Password">
               <Form.Control
                 type="password"
                 className="input ps-4"
@@ -125,12 +114,12 @@ const Login = ({ checkUserApi, user, error }) => {
                 {...register("password")}
               />
             </FloatingLabel>
-            <Form.Text >
+            <Form.Text>
               <p
                 className={`error ps-3 pt-2 ${
                   errors.password ? "active" : ""
                 } `}
-                style={{ color: "red"}}
+                style={{ color: "red" }}
               >
                 {errors.password ? (
                   <InfoCircle className=" me-2"></InfoCircle>
