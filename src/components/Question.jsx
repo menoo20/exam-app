@@ -95,7 +95,7 @@ const Question = ({
               </span>
             </h1>
             <Col md={7}>
-              <Card class="text-center col-7 p-0">
+              <Card className="text-center p-0">
                 <Card.Header className="text-white bg-dark py-3">
                   {/* display the question text */}
                   <h2 className="mb-0 ">{questions[currentQuestion].text}</h2>
