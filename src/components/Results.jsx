@@ -11,10 +11,10 @@ import bad from "../images/studymore.png";
 const Results = ({ result, resetResult }) => {
   return (
     <Container fluid={true} className="container-lg result">
-      <Row className="p-0 justify-content-lg-between justify-content-center align-items-center result-row">
-        <Col md={7}>
+      <Row className="p-0 justify-content-md-between justify-content-center align-items-center result-row m-auto">
+        <Col md={7} className="order-2 order-md-1 my-5 mb-md-0 text-center">
           <Card className="text-center p-0 ">
-            <div className="card-header py-3">
+            <div className="card-header py-3 bg-dark">
               {/* display the question text */}
               <h2>Final Result</h2>
             </div>
@@ -33,9 +33,9 @@ const Results = ({ result, resetResult }) => {
             </div>
           </Card>
         </Col>
-        <Col md={5}>
+        <Col md={5} className="order-1 order-md-2 text-center my-5 mb-md-0">
           {parseInt(result) > 70 ? (
-            <img className="img-fluid" src={hundred} alt="amazing" />
+            <img className="img-fluid " src={hundred} alt="amazing" />
           ) : (
             ""
           )}
